@@ -5,6 +5,7 @@
     tween: https://github.com/asweigart/pytweening
     APScheduler: https://apscheduler.readthedocs.io/en/stable/index.html
 """
+import morostCrawler.pipelines.design006
 
 # Scrapy settings for morostCrawler project
 #
@@ -68,8 +69,8 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # 设置下载中间件，可以自定义多个，数字代表优先级，越小越优先执行
 DOWNLOADER_MIDDLEWARES = {
-    "morostCrawler.middlewares.MorostcrawlerDownloaderMiddleware": 543,
-    "eyes_spider.middlewares.EyesSpiderDownloaderMiddleware": 600,
+    "morostCrawler.middlewares.SeleniumMiddleware": 544,
+    # "morostCrawler.middlewares.MorostcrawlerDownloaderMiddleware": 543,
 }
 
 # Enable or disable extensions
@@ -82,7 +83,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # 设置数据处理管道，可以自定义多个，数字代表优先级，越小越优先执行
 ITEM_PIPELINES = {
-    "morostCrawler.pipelines.MorostcrawlerPipeline": 300,
+    "morostCrawler.pipelines.design006.Design006HomePagePipeline": 500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -110,3 +111,13 @@ ITEM_PIPELINES = {
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+# 数据库参数
+DB_PARAMS = {
+    'host': 'localhost',
+    'database': 'crawler',
+    'user': 'postgres',
+    'password': '9527',
+    'port': 5432,
+    'charset': 'utf8',
+}
