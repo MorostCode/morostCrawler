@@ -2,11 +2,13 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import os
 import time
 
 import scrapy
 from scrapy import signals
 from selenium import webdriver
+from selenium.webdriver.edge.service import Service
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
@@ -114,6 +116,8 @@ class SeleniumMiddleware:
     def __init__(self):
         # 没有在这里设置浏览器，因为每次请求都会创建一个中间件对象，这样会导致浏览器频繁创建和销毁，影响性能
         self.driver = None
+        # 获取当前文件的路径
+        self.driver_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "msedgedriver.exe")
 
     def process_request(self, request, spider):
         # 如果请求中携带了useSelenium参数，则使用selenium
@@ -185,7 +189,8 @@ class SeleniumMiddleware:
             options.add_argument(f"--proxy-server=http://{':'.join(proxy)}")  # 隧道域名:端口号
 
         # 设置浏览器
-        self.driver = webdriver.Edge(options=options)
+        service = Service(executable_path=self.driver_path)
+        self.driver = webdriver.Edge(service=service, options=options)
 
         # 去除navigator.webdriver检测
         self.driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
