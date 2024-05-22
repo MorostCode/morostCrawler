@@ -1,3 +1,5 @@
 .idea
 __pycache__
+
+.exe
 forTest.py
