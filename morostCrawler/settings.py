@@ -84,6 +84,7 @@ DOWNLOADER_MIDDLEWARES = {
 # 设置数据处理管道，可以自定义多个，数字代表优先级，越小越优先执行
 ITEM_PIPELINES = {
     "morostCrawler.pipelines.design006.Design006HomePagePipeline": 500,
+    "morostCrawler.pipelines.nipic.NiPicHomePagePipeline": 501,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

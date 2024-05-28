@@ -39,3 +39,35 @@ class SpiderDesign006Pic(BaseModel):
     class Meta:
         table_name = 'spider_design006_pic'
 
+class SpiderNipicDesigner(BaseModel):
+    avatar_pic_url = CharField(null=True)
+    crawl_status = SmallIntegerField(constraints=[SQL("DEFAULT 1")], null=True)
+    create_time = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
+    designer_name = CharField(null=True)
+    homepage_url = CharField()
+    priority = SmallIntegerField(constraints=[SQL("DEFAULT 1")], null=True)
+    remark = CharField(null=True)
+    status = SmallIntegerField(constraints=[SQL("DEFAULT 1")])
+    update_time = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
+    works_list_page_url = CharField(null=True)
+    works_num = IntegerField(constraints=[SQL("DEFAULT 0")], null=True)
+    works_total_page_num = IntegerField(constraints=[SQL("DEFAULT 0")], null=True)
+
+    class Meta:
+        table_name = 'spider_nipic_designer'
+
+class SpiderNipicPic(BaseModel):
+    create_time = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
+    designer_id = IntegerField(constraints=[SQL("DEFAULT 1")], null=True)
+    remark = CharField(null=True)
+    status = SmallIntegerField(constraints=[SQL("DEFAULT 1")])
+    update_time = DateTimeField(constraints=[SQL("DEFAULT CURRENT_TIMESTAMP")])
+    works_name = CharField(null=True)
+    works_number = CharField(null=True)
+    works_page_url = CharField(null=True)
+    works_pic_url = CharField(null=True)
+    works_upload_time = DateTimeField(null=True)
+
+    class Meta:
+        table_name = 'spider_nipic_pic'
+
