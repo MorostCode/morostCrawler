@@ -37,7 +37,7 @@ ROBOTSTXT_OBEY = False
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
 # 下载器在下载同一个网站下一个页面前需要等待的时间 秒（默认值：0）
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 
 # The download delay setting will honor only one of:
 # CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -85,6 +85,7 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     "morostCrawler.pipelines.design006.Design006HomePagePipeline": 500,
     "morostCrawler.pipelines.nipic.NiPicHomePagePipeline": 501,
+    "morostCrawler.pipelines.nipic.NiPicWorksPipeline": 502,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

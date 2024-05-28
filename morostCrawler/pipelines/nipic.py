@@ -50,10 +50,10 @@ class NiPicWorksPipeline:
             # 获取设计师主页信息
             designer_info = SpiderNipicDesigner.get_by_id(designer_id)
             if designer_info:
-                works_name = item.get("work_name", None)
+                works_name = item.get("works_name", None)
                 works_page_url = item.get("works_page_url", None)
                 works_pic_url = item.get("works_pic_url", None)
-                works_upload_time = item.get("work_upload_time", None)
+                works_upload_time = item.get("works_upload_time", None)
                 works_upload_time = datetime.strptime(works_upload_time, "%Y-%m-%d") if works_upload_time else None
                 works_number = item.get("works_number", None)
 
@@ -67,6 +67,7 @@ class NiPicWorksPipeline:
 
                 # 保存作品信息
                 pic_info = SpiderNipicPic(
+                    designer_id=designer_id,
                     works_name=works_name,
                     works_page_url=works_page_url,
                     works_pic_url=works_pic_url,

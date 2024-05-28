@@ -100,15 +100,15 @@ class NiPicWorkSpider(scrapy.Spider):
         designer_info = (SpiderNipicDesigner.select().
                          where(SpiderNipicDesigner.crawl_status == 2).
                          get_or_none())
-        if designer_info and designer_info.works_page_url:
-            if designer_info.works_page_url.startswith("https://hi.nipic.com/people/") and \
-               designer_info.works_page_url.endswith("ni/"):
-                return {"designer_id": designer_info.id, "works_page_url": designer_info.works_page_url}
+        if designer_info and designer_info.works_list_page_url:
+            if designer_info.works_list_page_url.startswith("https://hi.nipic.com/people/") and \
+               designer_info.works_list_page_url.endswith("ni/"):
+                return {"designer_id": designer_info.id, "works_page_url": designer_info.works_list_page_url}
             else:
                 # 链接格式不合法，更新为采集失败
                 designer_info.crawl_status = 4
                 designer_info.save()
-                logger.warning(f"设计师作品页链接不合法 {designer_info.works_page_url}")
+                logger.warning(f"设计师作品页链接不合法 {designer_info.works_list_page_url}")
                 return None
         else:
             return None
@@ -190,14 +190,17 @@ class NiPicWorkSpider(scrapy.Spider):
         works_number = works_number_tag.text if works_number_tag else ""
         nipic_works_item['works_number'] = works_number
 
-        print(nipic_works_item)
-        # yield nipic_works_item
+        # print(nipic_works_item)
+        yield nipic_works_item
 
     def close(self, spider):
         # 更新记录为爬取完成
         if self.start_info:
             designer_info = SpiderNipicDesigner.get_by_id(self.start_info['designer_id'])
             if designer_info:
+                # 统计作品总数
+                works_num = SpiderNipicPic.select().where(SpiderNipicPic.designer_id == self.start_info['designer_id']).count()
+                designer_info.works_num = works_num
                 designer_info.crawl_status = 3
                 designer_info.save()
                 logger.info(f"设计师作品爬取完成 {designer_info.homepage_url}")
