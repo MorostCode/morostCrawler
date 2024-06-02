@@ -86,6 +86,9 @@ ITEM_PIPELINES = {
     "morostCrawler.pipelines.design006.Design006HomePagePipeline": 500,
     "morostCrawler.pipelines.nipic.NiPicHomePagePipeline": 501,
     "morostCrawler.pipelines.nipic.NiPicWorksPipeline": 502,
+
+    "morostCrawler.pipelines.toyFox.ToyFoxPipeline": 503,
+    "morostCrawler.pipelines.rukkaPets.RukkaPetsPipeline": 504,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
