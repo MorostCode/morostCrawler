@@ -7,6 +7,7 @@
 
 import os.path
 
+import requests
 from loguru import logger
 
 import pandas as pd
@@ -18,7 +19,7 @@ class ToyFoxPipeline:
             return item
         logger.info("进入ToyFoxPipeline，开始处理ToyFoxProductItem")
 
-        # 创建一个字典，键是列名，值是数据
+        # 创建字典，键是列名，值是数据
         data = {
             "产品详情页链接": [item['product_page_url']],
             "产品名称": [item['product_name']],
@@ -30,6 +31,49 @@ class ToyFoxPipeline:
             "产品描述（次要）": [item['product_description_side']],
             "产品详情": [item['product_details']]
         }
+
+        # 图片下载文件夹“E:\Github\morostCrawler\files\toyFoxPics”
+        pics_dir = r"E:\Github\morostCrawler\files\toyFoxPics"
+        product_name = item['product_name']
+        # 下载第一张图
+        if item['first_preview_pic_url']:
+            first_preview_pic_url = item['first_preview_pic_url']
+            print(first_preview_pic_url)
+            first_preview_pic_name = f"{product_name}_1.jpg"
+            first_preview_pic_path = os.path.join(pics_dir, first_preview_pic_name)
+            if os.path.exists(first_preview_pic_path):
+                logger.info(f"图片已存在：{first_preview_pic_path}")
+            else:
+                first_preview_pic_content = requests.get(first_preview_pic_url).content
+                with open(first_preview_pic_path, 'wb') as f:
+                    f.write(first_preview_pic_content)
+                logger.info(f"图片已下载：{first_preview_pic_path}")
+        # 下载第二张图
+        if item['second_preview_pic_url']:
+            second_preview_pic_url = item['second_preview_pic_url']
+            print(second_preview_pic_url)
+            second_preview_pic_name = f"{product_name}_2.jpg"
+            second_preview_pic_path = os.path.join(pics_dir, second_preview_pic_name)
+            if os.path.exists(second_preview_pic_path):
+                logger.info(f"图片已存在：{second_preview_pic_path}")
+            else:
+                second_preview_pic_content = requests.get(second_preview_pic_url).content
+                with open(second_preview_pic_path, 'wb') as f:
+                    f.write(second_preview_pic_content)
+                logger.info(f"图片已下载：{second_preview_pic_path}")
+        # 下载第三张图
+        if item['third_preview_pic_url']:
+            third_preview_pic_url = item['third_preview_pic_url']
+            print(third_preview_pic_url)
+            third_preview_pic_name = f"{product_name}_3.jpg"
+            third_preview_pic_path = os.path.join(pics_dir, third_preview_pic_name)
+            if os.path.exists(third_preview_pic_path):
+                logger.info(f"图片已存在：{third_preview_pic_path}")
+            else:
+                third_preview_pic_content = requests.get(third_preview_pic_url).content
+                with open(third_preview_pic_path, 'wb') as f:
+                    f.write(third_preview_pic_content)
+                logger.info(f"图片已下载：{third_preview_pic_path}")
 
         # 创建一个DataFrame
         df = pd.DataFrame(data)
