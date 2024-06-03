@@ -8,7 +8,7 @@
 import scrapy
 
 
-# rukkaPets产品item
+# RukkaPets产品item
 class RukkaPetsProductItem(scrapy.Item):
     product_page_url = scrapy.Field()  # 产品详情页链接
     first_preview_pic_url = scrapy.Field()  # 首张预览图片链接

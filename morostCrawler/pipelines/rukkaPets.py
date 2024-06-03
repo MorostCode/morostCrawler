@@ -10,8 +10,6 @@ import os.path
 import requests
 from loguru import logger
 
-import pandas as pd
-
 
 class RukkaPetsPipeline:
     def process_item(self, item, spider):
