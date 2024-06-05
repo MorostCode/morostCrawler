@@ -5,7 +5,7 @@
 # @desc: https://luhta.com/global/en/c/icepeak-pet/products
 # scrapy crawl icepeakPet --nolog
 
-import os.path
+import os
 
 import requests
 import pandas as pd
