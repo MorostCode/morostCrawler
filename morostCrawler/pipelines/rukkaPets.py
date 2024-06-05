@@ -8,6 +8,7 @@
 import os.path
 
 import requests
+import pandas as pd
 from loguru import logger
 
 
@@ -96,8 +97,6 @@ class RukkaPetsPipeline:
 
 
 if __name__ == '__main__':
-    import pandas as pd
-
     # 读取Excel文件
     file_path = r'E:\Github\morostCrawler\files\rukkaPets.xlsx'
     excel_data = pd.read_excel(file_path)
