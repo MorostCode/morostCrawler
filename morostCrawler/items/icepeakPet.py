@@ -2,7 +2,7 @@
 # @Time: 2024/6/3 下午11:46 
 # @Author: morost
 # @File: icepeakPet.py 
-# @desc: https://luhta.com/fi/fi/c/icepeak-pet/tuotteet
+# @desc: https://luhta.com/global/en/c/icepeak-pet/products
 # scrapy crawl icepeakPet --nolog
 
 import scrapy

@@ -2,7 +2,7 @@
 # @Time: 2024/6/3 下午11:41 
 # @Author: morost
 # @File: icepeakPet.py 
-# @desc: https://luhta.com/fi/fi/c/icepeak-pet/tuotteet
+# @desc: https://luhta.com/global/en/c/icepeak-pet/products
 # scrapy crawl icepeakPet --nolog
 
 import re
@@ -26,7 +26,7 @@ class IcepeakPetSpider(scrapy.Spider):
         # 获取请求头
         self.headers = get_project_settings().getdict("DEFAULT_REQUEST_HEADERS")
         # 初始化爬取链接
-        self.start_url = "https://luhta.com/fi/fi/c/icepeak-pet/tuotteet"
+        self.start_url = "https://luhta.com/global/en/c/icepeak-pet/products"
         # 产品计数
         self.count = 0
         # 产品总数
@@ -59,6 +59,7 @@ class IcepeakPetSpider(scrapy.Spider):
 
         # 直接访问最后一页
         page_url = f"{self.start_url}?currentPage={page_num}"
+        print(page_url)
         yield scrapy.Request(url=page_url,
                              callback=self.parse_product_list_page,
                              headers=self.headers)
