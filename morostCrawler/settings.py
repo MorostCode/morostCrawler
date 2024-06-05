@@ -90,6 +90,7 @@ ITEM_PIPELINES = {
     "morostCrawler.pipelines.toyFox.ToyFoxPipeline": 503,
     "morostCrawler.pipelines.rukkaPets.RukkaPetsPipeline": 504,
     "morostCrawler.pipelines.icepeakPet.IcepeakPetPipeline": 505,
+    "morostCrawler.pipelines.nonStop.NonStopPipeline": 506,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
