@@ -5,8 +5,6 @@
     tween: https://github.com/asweigart/pytweening
     APScheduler: https://apscheduler.readthedocs.io/en/stable/index.html
 """
-import morostCrawler.pipelines.design006
-
 # Scrapy settings for morostCrawler project
 #
 # For simplicity, this file contains only settings considered important or
